@@ -30,7 +30,7 @@ func (c *rawXcodeCommand) Run(workDir string, args []string, _ []string) (Output
 		exitCode  int
 	)
 
-	command := c.commandFactory.Create("arch", append([]string{"-x86_64"},  "xcodebuild", args...), &command.Opts{
+	command := c.commandFactory.Create("arch", append([]string{"-x86_64"},  append([]string{"xcodebuild"}, args...)), &command.Opts{
 		Stdout: &outBuffer,
 		Stderr: &outBuffer,
 		Env:    xcodeCommandEnvs,
