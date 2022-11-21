@@ -42,7 +42,7 @@ func (c *xcbeautifyRunner) Run(workDir string, xcodebuildArgs []string, xcbeauti
 
 	// For parallel and concurrent destination testing, it helps to use unbuffered I/O for stdout and to redirect stderr to stdout.
 	// NSUnbufferedIO=YES xcodebuild [args] 2>&1 | xcbeautify
-	buildCmd := c.commandFactory.Create("xcodebuild", xcodebuildArgs, &command.Opts{
+	buildCmd := c.commandFactory.Create("arch", append([]string{"-x86_64", "xcodebuild"}, xcodebuildArgs...), &command.Opts{
 		Stdout: buildOutWriter,
 		Stderr: buildOutWriter,
 		Env:    xcodeCommandEnvs,

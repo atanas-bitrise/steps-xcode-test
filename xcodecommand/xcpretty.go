@@ -39,7 +39,7 @@ func (c *xcprettyCommandRunner) Run(workDir string, xcodebuildArgs []string, xcp
 
 	c.cleanOutputFile(xcprettyArgs)
 
-	buildCmd := c.commandFactory.Create("xcodebuild", xcodebuildArgs, &command.Opts{
+	buildCmd := c.commandFactory.Create("arch", append([]string{"-x86_64", "xcodebuild"}, xcodebuildArgs...), &command.Opts{
 		Stdout: buildOutWriter,
 		Stderr: buildOutWriter,
 		Env:    xcodeCommandEnvs,
